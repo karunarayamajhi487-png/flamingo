@@ -2,168 +2,405 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>SteelBuild Construction</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRON & EDGE | Premium Steel Solutions</title>
+    <!-- Google Fonts: Syne for Brand, Inter for Body -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Industrial Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        body {
+        /* 
+        ========================================
+        DESIGN SYSTEM & VARIABLES
+        ========================================
+        */
+        :root {
+            --primary: #0057FF; /* Electric Blue - Youthful Energy */
+            --secondary: #1A1A1B; /* Deep Charcoal - Steel Base */
+            --accent: #E0E0E0;
+            --text-light: #F5F5F7;
+            --text-dark: #2C2C2E;
+            --transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            --glass: rgba(255, 255, 255, 0.03);
+            --border-white: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            padding: 0;
+            box-sizing: border-box;
+            outline: none;
         }
 
-        header {
-            background: #2c3e50;
-            color: white;
-            padding: 20px;
-            text-align: center;
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--secondary);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
+        /* 
+        ========================================
+        NAVIGATION
+        ========================================
+        */
         nav {
-            background: #34495e;
-            padding: 10px;
-            text-align: center;
-        }
-
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .hero {
-            background: url('https://via.placeholder.com/1200x400') no-repeat center/cover;
-            color: white;
-            text-align: center;
-            padding: 80px 20px;
-        }
-
-        .hero h1 {
-            font-size: 40px;
-        }
-
-        section {
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .services, .projects {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .card {
-            background: white;
-            margin: 15px;
-            padding: 20px;
-            width: 250px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-
-        .card img {
+            position: fixed;
+            top: 0;
             width: 100%;
-            border-radius: 5px;
+            padding: 25px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-white);
         }
 
-        footer {
-            background: #2c3e50;
-            color: white;
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        .logo span { color: var(--primary); }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 400;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover { color: var(--primary); }
+
+        /* 
+        ========================================
+        HERO SECTION
+        ========================================
+        */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 15px;
+            background: linear-gradient(rgba(26,26,27,0.8), rgba(26,26,27,0.8)), 
+                        url('https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=2070');
+            background-size: cover;
+            background-attachment: fixed;
+            padding: 0 10%;
         }
 
-        .contact p {
-            margin: 5px 0;
+        .hero-content h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            line-height: 1;
+            margin-bottom: 20px;
+            text-transform: uppercase;
         }
 
-        button {
-            background: #e67e22;
-            border: none;
-            padding: 10px 15px;
+        .hero-content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 40px;
+            color: var(--accent);
+        }
+
+        .cta-btn {
+            padding: 18px 40px;
+            background: var(--primary);
             color: white;
-            cursor: pointer;
-            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 0;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 87, 255, 0.3);
+        }
+
+        /* 
+        ========================================
+        SERVICES GRID (MODULAR)
+        ========================================
+        */
+        .section-padding { padding: 120px 8%; }
+
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--glass);
+            border: 1px solid var(--border-white);
+            padding: 50px 40px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 0;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        .service-card:hover::before { height: 100%; }
+
+        .service-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-10px);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+        }
+
+        .service-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* 
+        ========================================
+        GALLERY / REALISM SECTION
+        ========================================
+        */
+        .work-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 300px;
+            gap: 15px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+        /* Large items for visual rhythm */
+        .tall { grid-row: span 2; }
+        .wide { grid-column: span 2; }
+
+        /* 
+        ========================================
+        CONTACT & FOOTER
+        ========================================
+        */
+        .footer {
+            background: #000;
+            padding: 80px 8% 40px;
+            border-top: 1px solid var(--border-white);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 100px;
+            margin-bottom: 60px;
+        }
+
+        .footer-logo { font-family: 'Syne', sans-serif; font-size: 2rem; margin-bottom: 20px; }
+        
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .footer-grid { grid-template-columns: 1fr; gap: 50px; }
+            .work-gallery { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>SteelBuild Construction</h1>
-    <p>Steel Structure Fabrication & Construction Experts</p>
-</header>
+    <nav>
+        <div class="logo">IRON<span>EDGE</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Expertise</a></li>
+            <li><a href="#work">Projects</a></li>
+            <li><a href="#contact">Consultation</a></li>
+        </ul>
+    </nav>
 
-<nav>
-    <a href="#">Home</a>
-    <a href="#services">Services</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-</nav>
-
-<section class="hero">
-    <h1>Strong Steel. Reliable Structures.</h1>
-    <p>We design, fabricate, and build durable steel structures.</p>
-    <button>Get a Quote</button>
-</section>
-
-<section id="services">
-    <h2>Our Services</h2>
-    <div class="services">
-        <div class="card">
-            <img src="https://via.placeholder.com/250" alt="">
-            <h3>Steel Fabrication</h3>
-            <p>Custom steel fabrication for industrial and commercial projects.</p>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Forging the <br> Future of Steel.</h1>
+            <p>Architectural precision meets industrial strength. We specialize in high-end steel structures for a modern world.</p>
+            <a href="#work" class="cta-btn">View Our Legacy</a>
         </div>
+    </section>
 
-        <div class="card">
-            <img src="https://via.placeholder.com/250" alt="">
-            <h3>Warehouse Construction</h3>
-            <p>Strong and efficient warehouse structures built to last.</p>
+    <section class="section-padding" id="services">
+        <h2 class="section-title">Our Capabilities</h2>
+        <div class="services-grid">
+            <!-- Service 1 -->
+            <div class="service-card">
+                <i class="fas fa-industry service-icon"></i>
+                <h3>Steel Structure Fabrication</h3>
+                <p>Advanced CNC cutting and precision assembly for large-scale industrial skeletons. Where physics meets art.</p>
+            </div>
+            <!-- Service 2 -->
+            <div class="service-card">
+                <i class="fas fa-tools service-icon"></i>
+                <h3>Roofing Sheet Installation</h3>
+                <p>Weather-resistant, insulated, and aesthetically sleek roofing solutions for warehouses and luxury hangars.</p>
+            </div>
+            <!-- Service 3 -->
+            <div class="service-card">
+                <i class="fas fa-door-open service-icon"></i>
+                <h3>Metal Gates & Shutters</h3>
+                <p>Automated industrial shutters and elegant custom-designed metal gates for security and brand presence.</p>
+            </div>
+            <!-- Service 4 -->
+            <div class="service-card">
+                <i class="fas fa-fire-alt service-icon"></i>
+                <h3>Welding & Assembly</h3>
+                <p>Certified TIG/MIG welding techniques ensuring structural integrity that lasts a lifetime.</p>
+            </div>
+            <!-- Service 5 -->
+            <div class="service-card">
+                <i class="fas fa-building service-icon"></i>
+                <h3>Industrial Installation</h3>
+                <p>On-site management and erection of complex metal frameworks with surgical precision.</p>
+            </div>
+            <!-- Service 6 -->
+            <div class="service-card">
+                <i class="fas fa-layer-group service-icon"></i>
+                <h3>Metal Assembly</h3>
+                <p>Detailed component assembly for specialized machinery and architectural facades.</p>
+            </div>
         </div>
+    </section>
 
-        <div class="card">
-            <img src="https://via.placeholder.com/250" alt="">
-            <h3>Structural Design</h3>
-            <p>Engineering and design solutions for safe construction.</p>
+    <section class="section-padding" id="work" style="background: #141415;">
+        <h2 class="section-title">The Portfolio</h2>
+        <div class="work-gallery">
+            <div class="gallery-item wide">
+                <img src="https://images.unsplash.com/photo-1516937941344-00b4e0337589?auto=format&fit=crop&q=80&w=1000" alt="Steel Fabrication">
+                <div class="gallery-overlay"><h4>Main Warehouse Shell</h4></div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800" alt="Welding">
+                <div class="gallery-overlay"><h4>Precision Welding</h4></div>
+            </div>
+            <div class="gallery-item tall">
+                <img src="https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&q=80&w=800" alt="Roofing">
+                <div class="gallery-overlay"><h4>Roofing Systems</h4></div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1533045768406-03f8f176664d?auto=format&fit=crop&q=80&w=800" alt="Gates">
+                <div class="gallery-overlay"><h4>Custom Gates</h4></div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section id="projects">
-    <h2>Our Projects</h2>
-    <div class="projects">
-        <div class="card">
-            <img src="https://via.placeholder.com/250" alt="">
-            <h3>Factory Building</h3>
-            <p>Industrial steel structure project completed in 2025.</p>
+    <footer class="footer" id="contact">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-logo">IRON<span>EDGE</span></div>
+                <p style="color: var(--accent); margin-bottom: 30px;">Setting the standard in metalwork. From concept to erection, we provide the backbone for modern industry.</p>
+                <div style="display: flex; gap: 20px; font-size: 1.5rem;">
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-linkedin"></i>
+                    <i class="fab fa-twitter"></i>
+                </div>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 20px; text-transform: uppercase;">Quick Links</h4>
+                <ul style="list-style: none; line-height: 2.5;">
+                    <li>Services</li>
+                    <li>Case Studies</li>
+                    <li>Safety Standards</li>
+                    <li>Contact</li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 20px; text-transform: uppercase;">Headquarters</h4>
+                <p style="color: var(--accent);">1230 Industrial Way<br>Steel City, SC 4509<br>contact@ironedge.com</p>
+            </div>
         </div>
-
-        <div class="card">
-            <img src="https://via.placeholder.com/250" alt="">
-            <h3>Bridge Framework</h3>
-            <p>High-strength steel bridge framework construction.</p>
+        <div style="text-align: center; padding-top: 40px; border-top: 1px solid var(--border-white); font-size: 0.8rem; color: #666;">
+            &copy; 2026 IRON EDGE FABRICATIONS. ALL RIGHTS RESERVED.
         </div>
+    </footer>
 
-        <div class="card">
-            <img src="https://via.placeholder.com/250" alt="">
-            <h3>Commercial Shed</h3>
-            <p>Durable and cost-effective commercial steel shed.</p>
-        </div>
-    </div>
-</section>
+    <script>
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
 
-<section id="contact" class="contact">
-    <h2>Contact Us</h2>
-    <p>📍 Location: Your City, Country</p>
-    <p>📞 Phone: +123 456 7890</p>
-    <p>📧 Email: info@steelbuild.com</p>
-</section>
-
-<footer>
-    <p>© 2026 SteelBuild Construction | All Rights Reserved</p>
-</footer>
-
+        // Simple reveal animation on scroll
+        window.addEventListener('scroll', () => {
+            const cards = document.querySelectorAll('.service-card');
+            cards.forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                if(cardTop < window.innerHeight - 100) {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
