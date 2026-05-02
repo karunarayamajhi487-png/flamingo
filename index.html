@@ -5,489 +5,215 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VERDANT | Ultra-Fresh Agricultural Identity</title>
     
-    <!-- Fonts: Playfair Display for Elegance, Jost for Youthful Modernity -->
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* 
-        ========================================
-        ROOT DESIGN SYSTEM
-        ========================================
-        */
         :root {
-            --primary-dark: #1B3022;   /* Deep Forest Green */
-            --primary-accent: #87A330; /* Fresh Harvest Lime */
-            --soft-cream: #FAF9F6;     /* Elegant Paper White */
-            --earthy-brown: #3E2F28;
-            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            --shadow: 0 20px 40px rgba(0,0,0,0.05);
+            --primary-dark: #1B3022;
+            --primary-accent: #87A330;
+            --soft-cream: #FAF9F6;
+            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Jost', sans-serif;
             background-color: var(--soft-cream);
             color: var(--primary-dark);
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
 
-        /* 
-        ========================================
-        NAVIGATION (Glassmorphism)
-        ========================================
-        */
+        /* NAVIGATION */
         nav {
             position: fixed;
-            top: 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
+            top: 0; width: 100%;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 25px 8%;
             z-index: 1000;
-            background: rgba(250, 249, 246, 0.8);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(27, 48, 34, 0.05);
+            background: rgba(250, 249, 246, 0.9);
+            backdrop-filter: blur(20px);
         }
 
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-        }
-
+        .logo { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; }
         .logo span { color: var(--primary-accent); }
 
-        .nav-links {
-            display: flex;
-            gap: 35px;
-            list-style: none;
+        /* BENTO GRID PRODUCE SECTION */
+        .produce-section { padding: 120px 8%; }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 250px;
+            gap: 20px;
         }
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--primary-dark);
-            font-weight: 400;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
+        .bento-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #fff;
             transition: var(--transition);
         }
 
-        .nav-links a:hover { color: var(--primary-accent); }
+        .bento-item:hover { transform: scale(0.98); }
 
-        /* 
-        ========================================
-        HERO: THE HARVEST STATEMENT
-        ========================================
-        */
-        .hero {
-            height: 100vh;
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            align-items: center;
-            background: #f0f2ee;
-        }
-
-        .hero-text {
-            padding: 0 10% 0 12%;
-        }
-
-        .hero-text h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(3.5rem, 8vw, 6rem);
-            line-height: 1.1;
-            margin-bottom: 30px;
-        }
-
-        .hero-text p {
-            font-size: 1.1rem;
-            max-width: 500px;
-            margin-bottom: 40px;
-            opacity: 0.8;
-            line-height: 1.8;
-        }
-
-        .hero-image {
-            height: 100%;
-            background: url('https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&q=80&w=1000') center/cover no-repeat;
-            position: relative;
-        }
-
-        .hero-image::after {
-            content: "EST. 2026";
-            position: absolute;
-            bottom: 40px;
-            right: -20px;
-            transform: rotate(-90deg);
-            font-weight: 600;
-            letter-spacing: 5px;
-            color: white;
-        }
-
-        /* 
-        ========================================
-        CROP SHOWCASE (The Core 5)
-        ========================================
-        */
-        .section-header {
-            text-align: center;
-            padding: 100px 5% 60px;
-        }
-
-        .section-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-        }
-
-        .crop-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            padding: 0 8% 100px;
-        }
-
-        .crop-card {
-            background: white;
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .crop-card:hover {
-            transform: translateY(-15px);
-        }
-
-        .crop-img-wrapper {
-            height: 350px;
-            overflow: hidden;
-        }
-
-        .crop-img-wrapper img {
-            width: 100%;
-            height: 100%;
+        .bento-item img {
+            width: 100%; height: 100%;
             object-fit: cover;
             transition: var(--transition);
         }
 
-        .crop-card:hover img {
-            transform: scale(1.1);
+        .bento-item:hover img { transform: scale(1.1); filter: brightness(0.7); }
+
+        .overlay {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            opacity: 0;
+            transition: var(--transition);
         }
 
-        .crop-info {
-            padding: 30px;
-            text-align: center;
-        }
+        .bento-item:hover .overlay { opacity: 1; }
 
-        .crop-info h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
+        /* Custom Sizing for Bento Look */
+        .large { grid-column: span 2; grid-row: span 2; }
+        .tall { grid-row: span 2; }
+        .wide { grid-column: span 2; }
 
         .tag {
             font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
             color: var(--primary-accent);
-            font-weight: 700;
-        }
-
-        /* 
-        ========================================
-        EXPERIENCE SECTION (Youthful Energy)
-        ========================================
-        */
-        .process {
-            background: var(--primary-dark);
-            color: var(--soft-cream);
-            padding: 120px 8%;
-            display: flex;
-            align-items: center;
-            gap: 80px;
-        }
-
-        .process-visual {
-            flex: 1;
-            position: relative;
-        }
-
-        .process-visual img {
-            width: 100%;
-            border-radius: 500px 500px 0 0;
-            border: 1px solid rgba(255,255,255,0.2);
-            padding: 15px;
-        }
-
-        .process-content {
-            flex: 1;
-        }
-
-        .process-step {
+            display: block;
             margin-bottom: 40px;
-            display: flex;
-            gap: 20px;
+            text-align: center;
         }
 
-        .step-num {
+        h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: var(--primary-accent);
+            font-size: 3.5rem;
+            text-align: center;
+            margin-bottom: 60px;
         }
 
-        /* 
-        ========================================
-        FOOTER
-        ========================================
-        */
-        footer {
-            background: #111e15;
-            padding: 80px 8% 40px;
-            color: var(--soft-cream);
-        }
-
-        .footer-main {
-            display: grid;
-            grid-template-columns: 1.5fr 1fr 1fr 1fr;
-            gap: 60px;
-            padding-bottom: 60px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .footer-col h4 {
-            font-family: 'Playfair Display', serif;
-            margin-bottom: 25px;
-            font-size: 1.2rem;
-        }
-
-        .footer-col ul {
-            list-style: none;
-            line-height: 2.2;
-        }
-
-        .footer-col a {
-            color: rgba(255,255,255,0.6);
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: 0.3s;
-        }
-
-        .footer-col a:hover { color: var(--primary-accent); }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .crop-grid { grid-template-columns: repeat(2, 1fr); }
-            .hero { grid-template-columns: 1fr; }
-            .hero-image { display: none; }
-            .process { flex-direction: column; }
-        }
     </style>
 </head>
 <body>
 
     <nav>
         <div class="logo">VERDANT<span>.</span></div>
-        <ul class="nav-links">
-            <li><a href="#home">Philosophy</a></li>
-            <li><a href="#produce">The Produce</a></li>
-            <li><a href="#method">Our Method</a></li>
-            <li><a href="#contact">Orders</a></li>
-        </ul>
+        <div style="font-size: 0.8rem; letter-spacing: 2px; font-weight: 600;">CATALOG 2026</div>
     </nav>
 
-    <section class="hero" id="home">
-        <div class="hero-text">
-            <span class="tag">Sustainable Growth</span>
-            <h1>Farming <br><em>Reimagined.</em></h1>
-            <p>We combine youthful innovation with the elegance of nature to bring the world's freshest vegetables from our soil to your table.</p>
-            <a href="#produce" style="padding: 15px 40px; background: var(--primary-dark); color: white; text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-size: 0.7rem; font-weight: 600;">Explore Harvest</a>
-        </div>
-        <div class="hero-image"></div>
-    </section>
+    <section class="produce-section">
+        <span class="tag">Premium Earth-Born Goods</span>
+        <h2>The Full Harvest</h2>
 
-    <section class="section-header" id="produce">
-        <span class="tag">Seasonal Selection</span>
-        <h2>Signature Harvests</h2>
-    </section>
-
-    <div class="crop-grid">
-        <!-- Tomato Farming -->
-        <div class="crop-card">
-            <div class="crop-img-wrapper">
-                <img src="https://images.unsplash.com/photo-1592841200221-a6898f307baa?auto=format&fit=crop&q=80&w=800" alt="Tomato Farming">
-            </div>
-            <div class="crop-info">
-                <span class="tag">Vine-Ripened</span>
-                <h3>Heritage Tomatoes</h3>
-                <p>Bursting with antioxidants and sun-soaked flavor.</p>
-            </div>
-        </div>
-
-        <!-- Potato Farming -->
-        <div class="crop-card">
-            <div class="crop-img-wrapper">
-                <img src="https://images.unsplash.com/photo-1518977676601-b53f02ac6d31?auto=format&fit=crop&q=80&w=800" alt="Potato Farming">
-            </div>
-            <div class="crop-info">
-                <span class="tag">Root Fresh</span>
-                <h3>Organic Potatoes</h3>
-                <p>Triple-washed, nutrient-dense starch for the soul.</p>
-            </div>
-        </div>
-
-        <!-- Cucumber Farming -->
-        <div class="crop-card">
-            <div class="crop-img-wrapper">
-                <img src="https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?auto=format&fit=crop&q=80&w=800" alt="Cucumber Farming">
-            </div>
-            <div class="crop-info">
-                <span class="tag">Hydro-Crisp</span>
-                <h3>Green Cucumbers</h3>
-                <p>The peak of hydration and crunchy freshness.</p>
-            </div>
-        </div>
-
-        <!-- Corn Farming -->
-        <div class="crop-card">
-            <div class="crop-img-wrapper">
-                <img src="https://images.unsplash.com/photo-1551754655-cd27e38d2076?auto=format&fit=crop&q=80&w=800" alt="Corn Farming">
-            </div>
-            <div class="crop-info">
-                <span class="tag">Golden Grain</span>
-                <h3>Sweet Corn</h3>
-                <p>Picked at dawn to preserve natural sugars.</p>
-            </div>
-        </div>
-
-        <!-- Ladyfinger Farming -->
-        <div class="crop-card">
-            <div class="crop-img-wrapper">
-                <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&q=80&w=800" alt="Okra Ladyfinger">
-            </div>
-            <div class="crop-info">
-                <span class="tag">Exotic Green</span>
-                <h3>Tender Ladyfinger</h3>
-                <p>Delicate texture, perfect for gourmet creations.</p>
-            </div>
-        </div>
-
-        <!-- Additional Product -->
-        <div class="crop-card">
-            <div class="crop-img-wrapper">
-                <img src="https://images.unsplash.com/photo-1515471204579-4baed00c3168?auto=format&fit=crop&q=80&w=800" alt="General Farming">
-            </div>
-            <div class="crop-info">
-                <span class="tag">Curated Packs</span>
-                <h3>Seasonal Boxes</h3>
-                <p>A mix of our best, delivered weekly.</p>
-            </div>
-        </div>
-    </div>
-
-    <section class="process" id="method">
-        <div class="process-visual">
-            <img src="https://images.unsplash.com/photo-1461354464878-ad92f492a5a0?auto=format&fit=crop&q=80&w=1000" alt="Farming Process">
-        </div>
-        <div class="process-content">
-            <span class="tag" style="color: var(--primary-accent);">Our Philosophy</span>
-            <h2 style="font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 40px;">Elegant Systems, <br>Pure Results.</h2>
+        <div class="bento-grid">
             
-            <div class="process-step">
-                <div class="step-num">01</div>
-                <div>
-                    <h4>Precision Planting</h4>
-                    <p style="opacity: 0.7; font-size: 0.9rem;">We use soil-health sensors to ensure every seed has the perfect environment to thrive.</p>
+            <!-- Large Focus: Tomatoes -->
+            <div class="bento-item large">
+                <img src="https://images.unsplash.com/photo-1592841200221-a6898f307baa?auto=format&fit=crop&q=80&w=1200" alt="Tomatoes">
+                <div class="overlay">
+                    <h3>Heirloom Tomatoes</h3>
+                    <p>Vine-ripened, organic varieties.</p>
                 </div>
             </div>
 
-            <div class="process-step">
-                <div class="step-num">02</div>
-                <div>
-                    <h4>Eco-Harvesting</h4>
-                    <p style="opacity: 0.7; font-size: 0.9rem;">No harsh chemicals. We use biological pest control to keep our vegetables 100% realistic and organic.</p>
+            <!-- Tall: Bell Peppers -->
+            <div class="bento-item tall">
+                <img src="https://images.unsplash.com/photo-1566385101042-1a0aa0c12e8c?auto=format&fit=crop&q=80&w=800" alt="Bell Peppers">
+                <div class="overlay">
+                    <h3>Tri-Color Peppers</h3>
+                    <p>Sweet, crunchy, and vibrant.</p>
                 </div>
             </div>
 
-            <div class="process-step">
-                <div class="step-num">03</div>
-                <div>
-                    <h4>Rapid Distribution</h4>
-                    <p style="opacity: 0.7; font-size: 0.9rem;">From the field to your kitchen in under 12 hours. That is the Verdant promise.</p>
+            <!-- Small: Cucumbers -->
+            <div class="bento-item">
+                <img src="https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?auto=format&fit=crop&q=80&w=800" alt="Cucumbers">
+                <div class="overlay">
+                    <h3>English Cucumbers</h3>
+                    <p>Hydroponically grown.</p>
                 </div>
             </div>
+
+            <!-- Small: Ladyfingers -->
+            <div class="bento-item">
+                <img src="https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&q=80&w=800" alt="Okra">
+                <div class="overlay">
+                    <h3>Tender Okra</h3>
+                    <p>Hand-picked daily.</p>
+                </div>
+            </div>
+
+            <!-- Wide: Strawberries -->
+            <div class="bento-item wide">
+                <img src="https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&q=80&w=1200" alt="Strawberries">
+                <div class="overlay">
+                    <h3>Field Strawberries</h3>
+                    <p>Bursting with natural sugars.</p>
+                </div>
+            </div>
+
+            <!-- Tall: Corn -->
+            <div class="bento-item tall">
+                <img src="https://images.unsplash.com/photo-1551754655-cd27e38d2076?auto=format&fit=crop&q=80&w=800" alt="Corn">
+                <div class="overlay">
+                    <h3>Sweet Yellow Corn</h3>
+                    <p>Non-GMO, farm fresh.</p>
+                </div>
+            </div>
+
+            <!-- Small: Broccoli -->
+            <div class="bento-item">
+                <img src="https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?auto=format&fit=crop&q=80&w=800" alt="Broccoli">
+                <div class="overlay">
+                    <h3>Organic Broccoli</h3>
+                    <p>High fiber, fresh heads.</p>
+                </div>
+            </div>
+
+            <!-- Large: Avocados -->
+            <div class="bento-item large">
+                <img src="https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?auto=format&fit=crop&q=80&w=1200" alt="Avocados">
+                <div class="overlay">
+                    <h3>Hass Avocados</h3>
+                    <p>Rich, creamy, and sustainable.</p>
+                </div>
+            </div>
+
+            <!-- Small: Potatoes -->
+            <div class="bento-item">
+                <img src="https://images.unsplash.com/photo-1518977676601-b53f02ac6d31?auto=format&fit=crop&q=80&w=800" alt="Potatoes">
+                <div class="overlay">
+                    <h3>Baby Potatoes</h3>
+                    <p>Perfect for gourmet roasting.</p>
+                </div>
+            </div>
+
+            <!-- Wide: Grapes -->
+            <div class="bento-item wide">
+                <img src="https://images.unsplash.com/photo-1537640538966-79f369b41e8f?auto=format&fit=crop&q=80&w=1200" alt="Grapes">
+                <div class="overlay">
+                    <h3>Seedless Grapes</h3>
+                    <p>Sweet, juicy, and crisp.</p>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <footer>
-        <div class="footer-main">
-            <div class="footer-col">
-                <div class="logo">VERDANT<span>.</span></div>
-                <p style="margin-top: 20px; font-size: 0.8rem; opacity: 0.6; line-height: 1.8;">Cultivating the future through sustainable practices and elegant agricultural design.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Produce</h4>
-                <ul>
-                    <li><a href="#">Summer Tomatoes</a></li>
-                    <li><a href="#">Root Vegetables</a></li>
-                    <li><a href="#">Corn Varieties</a></li>
-                    <li><a href="#">Specialty Ladyfingers</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Support</h4>
-                <ul>
-                    <li><a href="#">Farm Tours</a></li>
-                    <li><a href="#">Wholesale</a></li>
-                    <li><a href="#">Logistics</a></li>
-                    <li><a href="#">Privacy</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Connect</h4>
-                <div style="display: flex; gap: 20px; font-size: 1.2rem;">
-                    <i class="fab fa-instagram"></i>
-                    <i class="fab fa-facebook"></i>
-                    <i class="fab fa-linkedin"></i>
-                </div>
-            </div>
-        </div>
-        <div style="text-align: center; padding-top: 40px; font-size: 0.7rem; opacity: 0.4; letter-spacing: 1px;">
-            &copy; 2026 VERDANT AGRO-BOUTIQUE. ALL RIGHTS RESERVED.
-        </div>
+    <footer style="padding: 100px 8%; background: var(--primary-dark); color: white; text-align: center;">
+        <h2 style="color: white;">Join the Harvest.</h2>
+        <p style="opacity: 0.7; max-width: 600px; margin: 0 auto 40px;">Verdant is more than a farm; it’s a commitment to the elegance of nature and the health of the next generation.</p>
+        <button style="padding: 15px 45px; background: var(--primary-accent); border: none; color: white; font-weight: 600; text-transform: uppercase; cursor: pointer;">Download Catalog</button>
     </footer>
 
-    <script>
-        // Smooth reveal on scroll logic
-        const observerOptions = {
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = "1";
-                    entry.target.style.transform = "translateY(0)";
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.crop-card').forEach(el => {
-            el.style.opacity = "0";
-            el.style.transform = "translateY(30px)";
-            el.style.transition = "all 0.8s ease-out";
-            observer.observe(el);
-        });
-    </script>
 </body>
 </html>
